@@ -9,7 +9,7 @@
     "test:watch": "jest --coverage --watchAll",
     "build": "tsc",
     "build:watch": "onchange 'src/**/*.ts' -- npm run build",
-    "build:start-app": "tsc tsconfig.json && node ./dist/app.js",
+    "build:start-app": "tsc ./src/app.ts && node ./dist/app.js",
     "view:coverage": "serve coverage/lcov-report",
     "clean": "rm -rf coverage src/**/*.js src/**/*.map",
     "clean-build": "rm -rf ./dist/",

@@ -1,6 +1,3 @@
-// require("@babel/core").transform("code", {
-//   presets: ["@babel/preset-typescript"],
-// });
 import express from "express";
 const app = express()
 const port = 8888
@@ -11,7 +8,17 @@ function home(req : any, res : any){
 app.get("/", home)
 
 app.listen(port, ()=>{
-   console.log("server listening on port " + port)
+	if (process.env.NODE_ENV) {
+		console.log(process.env.NODE_ENV)
+		setTimeout(function () {
+            console.log("close" in app)
+            // TypeError: Object function app(req, res){ app.handle(req, res); } has no method 'close'
+        }, 3000)
+	}
+
+	if (process.env.NODE_ENV === 'test') {
+		console.log("test server listening on port " + port)
+	}
  })
 
 export default app

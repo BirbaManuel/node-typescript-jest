@@ -1,27 +1,43 @@
+import request from "supertest"
 import app  from "./app"
-import { sum } from "./sum"
-import { minus } from "./minus"
 
-describe("api is ready ('/')",()=>{
+function closePromises(pm:any){
+  console.log(pm)
+};
 
-  test('status is ok', () => {
-    expect(sum(1, 2)).toBe(3);
-  });
+// afterAll((done) => {
+//   closePromises(done);
+// });
 
+// describe("api is ready ('/')",()=>{
 
-  test('Content-Type is ok', () => {
-    expect(minus(2, 1)).toBe(1);
-  });
+//   test('status is ok', () => {
+//      request(app)
+//         .get('/')
+//         .expect(200)
+//         .end(function(err, res) {
+//           if (err) throw err;
+//         });
+//   });
 
-})
+//   test('Content-Type is ok', () => {
+//       request(app)
+//         .get('/')
+//         .expect('Content-Type', /json/)
+//         .end(function(err, res) {
+//           if (err) throw err;
+//         });
+//   });
+// });
 
-describe("response is ok",()=>{
+describe("response object",()=>{
   /*test asyn code*/
   // test('response object', async() => {
   //   await expect(true).toBe(true);
   // });
-  test('response object', () => {
-     expect(true).toBe(true);
-  });
-
+  test('response object got success property is ok', async (done) => {
+    const responseObject = await request(app).get('/')
+    expect(responseObject.text).toBe('{"succes":"Welcome api running at port:8888"}')
+    done()
+  },3000);
 })

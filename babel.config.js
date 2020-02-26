@@ -10,9 +10,8 @@ module.exports = {
       },
     ],
   ],
-  {
-  "plugins": ["./node_modules/@babel/plugin-transform-typescript"]
-}
+  '@babel/preset-typescript',
+  plugins: ["./node_modules/@babel/plugin-transform-typescript"]
 };
 // // babel.config.js
 // module.exports = api => {

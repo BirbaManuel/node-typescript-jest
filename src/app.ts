@@ -7,18 +7,14 @@ function home(req : any, res : any){
 }
 app.get("/", home)
 
-app.listen(port, ()=>{
-	if (process.env.NODE_ENV) {
-		console.log(process.env.NODE_ENV)
-		setTimeout(function () {
-            console.log("close" in app)
-            // TypeError: Object function app(req, res){ app.handle(req, res); } has no method 'close'
-        }, 3000)
-	}
-
+var server = app.listen(port, ()=>{
 	if (process.env.NODE_ENV === 'test') {
+			server.close();
+		setTimeout(function () {
+            console.log("close in 3 secondes")
 		console.log("test server listening on port " + port)
+		}, 1000)
 	}
- })
+})
 
 export default app

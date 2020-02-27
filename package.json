@@ -5,7 +5,7 @@
   "main": "sum.ts",
   "scripts": {
     "test": "jest",
-    "test-app": "jest --detectOpenHandles ./src/app.test.ts",
+    "test-app": "jest ./src/app.test.ts",
     "test:watch": "jest --coverage --watchAll",
     "build": "tsc",
     "build:watch": "onchange 'src/**/*.ts' -- npm run build",
